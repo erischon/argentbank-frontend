@@ -22,3 +22,5 @@ const userLogin = async (payload) => {
     const accessToken = response?.data?.accessToken;
   } catch (err) {}
 };
+
+export default userLogin;
