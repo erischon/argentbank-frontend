@@ -18,6 +18,7 @@ export const userLogin = async (payload) => {
     return response?.data;
   } catch (err) {
     console.log("User Login Service Error :", err);
+    return err?.response?.data;
   }
 };
 
@@ -35,6 +36,7 @@ export const userSignup = async (payload) => {
     return response?.data;
   } catch (err) {
     console.log("User Signup Service Error :", err);
+    return err?.response?.data;
   }
 };
 
@@ -56,6 +58,7 @@ export const getUserProfile = async (token) => {
     return response?.data;
   } catch (err) {
     console.log("User Profile Service Error :", err);
+    return err?.response?.data;
   }
 };
 
@@ -77,5 +80,6 @@ export const updateUserProfile = async (token, payload) => {
     return response?.data;
   } catch (err) {
     console.log("Update User Profile Service Error :", err);
+    return err?.response?.data;
   }
 };

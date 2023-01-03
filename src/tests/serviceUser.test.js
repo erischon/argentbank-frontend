@@ -18,7 +18,7 @@ describe("Testing user login", () => {
     password: "password12",
   };
 
-  it("should have a status 200", async () => {
+  it("should have a status of 200", async () => {
     const data = await userLogin(payload);
 
     expect(data?.status).toBe(200);
@@ -45,10 +45,23 @@ describe("Testing user signup", () => {
     lastName: "litoto",
   };
 
-  it("should have a status 200", async () => {
+  const payload2 = {
+    email: "toto@gmail.com",
+    password: "",
+    firstName: "toto",
+    lastName: "litoto",
+  };
+
+  it("should have a status of 200", async () => {
     const data = await userSignup(payload);
 
     expect(data?.status).toBe(200);
+  });
+
+  it("should have a status of 400 on invalids fields", async () => {
+    const data = await userSignup(payload2);
+
+    expect(data?.status).toBe(400);
   });
 });
 
@@ -56,24 +69,39 @@ describe("Testing getting user profile", () => {
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGVlZjMyNWM3M2JkNTIwODg5ZGU2MSIsImlhdCI6MTY3MjcyODUwMCwiZXhwIjoxNjcyODE0OTAwfQ.yYf8fhhVceChPiOG_z84TSpZMxJymoAGFbzJVklBbzs";
 
-  it("should have a status 200", async () => {
+  const token2 = "";
+
+  it("should have a status of 200", async () => {
     const data = await getUserProfile(token);
 
     expect(data?.status).toBe(200);
+  });
+
+  it("should have a status of 401 with wrong token", async () => {
+    const data = await getUserProfile(token2);
+
+    expect(data?.status).toBe(401);
   });
 });
 
 describe("Testing updating user profile", () => {
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGVlZjMyNWM3M2JkNTIwODg5ZGU2MSIsImlhdCI6MTY3MjcyODUwMCwiZXhwIjoxNjcyODE0OTAwfQ.yYf8fhhVceChPiOG_z84TSpZMxJymoAGFbzJVklBbzs";
+  const token2 = "";
   const payload = {
     firstName: "value 1",
     lastName: "value 2",
   };
 
-  it("should have a status 200", async () => {
+  it("should have a status of 200", async () => {
     const data = await updateUserProfile(token);
 
     expect(data?.status).toBe(200);
+  });
+
+  it("should have a status of 401 with wrong token", async () => {
+    const data = await updateUserProfile(token2);
+
+    expect(data?.status).toBe(401);
   });
 });
