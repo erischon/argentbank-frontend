@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 
-import userLogin from "../services/serviceUser";
+import { userLogin, userSignup } from "../services/serviceUser";
 
 const SignIn = () => {
-  const response = userLogin();
-  console.log(response);
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
@@ -15,14 +13,17 @@ const SignIn = () => {
             <label htmlFor="username">Username</label>
             <input type="text" id="username" />
           </div>
+
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" />
           </div>
+
           <div className="input-remember">
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
+
           <Link to="/user/1">
             <button className="sign-in-button">Sign In</button>
           </Link>
