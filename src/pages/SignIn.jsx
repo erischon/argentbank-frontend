@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 
-import { userLogin, userSignup } from "../services/serviceUser";
-
 const SignIn = () => {
   return (
     <main className="main bg-dark">
