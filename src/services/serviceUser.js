@@ -10,17 +10,12 @@ const USER_PROFILE_URL = "/user/profile";
  * @returns {}
  */
 export const userLogin = async (payload) => {
-  payload = {
-    email: "tony@stark.com",
-    password: "password123",
-  };
-
   try {
     const response = await axios.post(LOGIN_URL, JSON.stringify(payload), {
       headers: { "Content-Type": "application/json" },
     });
-    console.log("======userLogin", JSON.stringify(response?.data?.body?.token));
-    return response?.data?.body?.token;
+
+    return response?.data;
   } catch (err) {
     console.log("User Login Service Error :", err);
   }
@@ -36,7 +31,8 @@ export const userSignup = async (payload) => {
     const response = await axios.post(SIGNUP_URL, JSON.stringify(payload), {
       headers: { "Content-Type": "application/json" },
     });
-    console.log("======userSignup", JSON.stringify(response?.data.status));
+
+    return response?.data;
   } catch (err) {
     console.log("User Signup Service Error :", err);
   }
@@ -48,8 +44,6 @@ export const userSignup = async (payload) => {
  * @returns {}
  */
 export const getUserProfile = async (token) => {
-  token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGVlZjMyNWM3M2JkNTIwODg5ZGU2MSIsImlhdCI6MTY3MjcyODUwMCwiZXhwIjoxNjcyODE0OTAwfQ.yYf8fhhVceChPiOG_z84TSpZMxJymoAGFbzJVklBbzs";
   const data = {
     key: "value",
   };
@@ -58,7 +52,8 @@ export const getUserProfile = async (token) => {
     const response = await axios.post(USER_PROFILE_URL, data, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log("======userProfile", JSON.stringify(response?.data));
+
+    return response?.data;
   } catch (err) {
     console.log("User Profile Service Error :", err);
   }
@@ -71,13 +66,6 @@ export const getUserProfile = async (token) => {
  * @returns {}
  */
 export const updateUserProfile = async (token, payload) => {
-  token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGVlZjMyNWM3M2JkNTIwODg5ZGU2MSIsImlhdCI6MTY3MjcyODUwMCwiZXhwIjoxNjcyODE0OTAwfQ.yYf8fhhVceChPiOG_z84TSpZMxJymoAGFbzJVklBbzs";
-  payload = {
-    firstName: "value 1",
-    lastName: "value 2",
-  };
-
   try {
     const response = await axios.put(USER_PROFILE_URL, payload, {
       headers: {
@@ -85,10 +73,8 @@ export const updateUserProfile = async (token, payload) => {
         "Content-Type": "application/json",
       },
     });
-    console.log(
-      "======updateUserProfile",
-      JSON.stringify(response?.data.status)
-    );
+
+    return response?.data;
   } catch (err) {
     console.log("Update User Profile Service Error :", err);
   }
