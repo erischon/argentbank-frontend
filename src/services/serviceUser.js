@@ -17,7 +17,6 @@ export const userLogin = async (payload) => {
 
     return response?.data;
   } catch (err) {
-    console.log("User Login Service Error :", err);
     return err?.response?.data;
   }
 };
