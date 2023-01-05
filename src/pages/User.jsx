@@ -9,7 +9,9 @@ const User = () => {
         </h1>
         <button className="edit-button">Edit Name</button>
       </div>
+
       <h2 className="sr-only">Accounts</h2>
+
       <section className="account">
         <div className="account-content-wrapper">
           <h3 className="account-title">Argent Bank Checking (x8349)</h3>
@@ -20,6 +22,7 @@ const User = () => {
           <button className="transaction-button">View transactions</button>
         </div>
       </section>
+
       <section className="account">
         <div className="account-content-wrapper">
           <h3 className="account-title">Argent Bank Savings (x6712)</h3>
@@ -30,6 +33,7 @@ const User = () => {
           <button className="transaction-button">View transactions</button>
         </div>
       </section>
+
       <section className="account">
         <div className="account-content-wrapper">
           <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
