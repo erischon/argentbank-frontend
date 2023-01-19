@@ -1,10 +1,9 @@
 import { useRef, useState, useEffect, useContext } from "react";
-import { useDispatch } from "react-redux";
 
 import AuthContext from "../context/AuthProvider";
-
+import { userLogin } from "../services/serviceUser";
+import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { userLogin } from "../features/auth/authAction";
 
 const SignIn = () => {
   const { setAuth } = useContext(AuthContext);
@@ -18,11 +17,13 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     userRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, pwd]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,10 +48,6 @@ const SignIn = () => {
     navigate(`../user/123`);
   };
 
-  const submitForm = (data) => {
-    dispatch(userLogin(data));
-  };
-
   return (
     <main className="main bg-dark">
       {success ? (
@@ -72,7 +69,7 @@ const SignIn = () => {
 
           <h1>Sign In</h1>
 
-          <form onSubmit={handleSubmit(submitForm)}>
+          <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
               <label htmlFor="username">Username</label>
               <input

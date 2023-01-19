@@ -9,17 +9,17 @@ const USER_PROFILE_URL = "/user/profile";
  * @param {{email: string, password: string}} payload
  * @returns {}
  */
-export const userLogin = async (payload) => {
-  try {
-    const response = await axios.post(LOGIN_URL, JSON.stringify(payload), {
-      headers: { "Content-Type": "application/json" },
-    });
+// export const userLogin = async (payload) => {
+//   try {
+//     const response = await axios.post(LOGIN_URL, JSON.stringify(payload), {
+//       headers: { "Content-Type": "application/json" },
+//     });
 
-    return response?.data;
-  } catch (err) {
-    return err?.response?.data;
-  }
-};
+//     return response?.data;
+//   } catch (err) {
+//     return err?.response?.data;
+//   }
+// };
 
 /**
  * User Signup
