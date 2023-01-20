@@ -49,7 +49,7 @@ const SignIn = () => {
   };
 
   return (
-    <main className="main bg-dark test">
+    <main className="main bg-dark">
       {success ? (
         <section>
           <h1>You are logged in !</h1>
