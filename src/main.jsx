@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 
+import "normalize.css";
 import "./assets/css/main.css";
 
 import ErrorPage from "./pages/errorPage";
