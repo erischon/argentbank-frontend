@@ -12,12 +12,22 @@ const SignIn = () => {
   const [values, setValues] = useState(initialState);
 
   const handleChange = (e) => {
-    console.log("======handleChange", e.target);
+    const name = e.target.name;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
+    console.log("======handleChange", `${name}:${value}`);
+
+    setValues({ ...values, [name]: value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("======onSubmit", e.target);
+    const { name, email, password, isMember } = values;
+    if (!email || !password || (!isMember && !name)) {
+      console.log("Please Fill Out All Fields");
+      return;
+    }
   };
 
   return (
@@ -28,20 +38,31 @@ const SignIn = () => {
         <h1>Sign In</h1>
 
         <form onSubmit={onSubmit}>
-          <div className="input-wrapper">
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              id="email"
-              autoComplete="off"
-              required
-              value={values.email}
-              onChange={handleChange}
-            />
-          </div>
+          <FormRow
+            type="text"
+            name="email"
+            value={values.email}
+            handleChange={handleChange}
+            required={true}
+            autoComplete="off"
+          />
+
+          <FormRow
+            type="password"
+            name="password"
+            value={values.password}
+            handleChange={handleChange}
+            required={true}
+          />
 
           <div className="input-remember">
-            <input type="checkbox" id="remember-me" />
+            <input
+              type="checkbox"
+              id="remember-me"
+              value={values.rememberMe}
+              name="rememberMe"
+              onChange={handleChange}
+            />
             <label htmlFor="remember-me">Remember me</label>
           </div>
 
