@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { loginUser } from "../features/user/userSlice";
+
 import FormRow from "../components/FormRow";
 
 const initialState = {
@@ -9,7 +13,10 @@ const initialState = {
 };
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+
   const [values, setValues] = useState(initialState);
+  const { isLoading, user } = useSelector((store) => store.user);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -23,11 +30,13 @@ const SignIn = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password, isMember } = values;
-    if (!email || !password || (!isMember && !name)) {
+    const { email, password } = values;
+    if (!email || !password) {
       console.log("Please Fill Out All Fields");
       return;
     }
+
+    dispatch(loginUser({ email: email, password: password }));
   };
 
   return (
