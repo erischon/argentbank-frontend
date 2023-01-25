@@ -1,11 +1,17 @@
+import { useSelector } from "react-redux";
+
 const User = () => {
+  const { userProfile } = useSelector((store) => store.user);
+
+  console.log(userProfile?.firstName);
+
   return (
     <main className="main bg-dark">
       <div className="header">
         <h1>
           Welcome back
           <br />
-          Tony Jarvis!
+          {`${userProfile?.firstName} ${userProfile?.lastName}`}
         </h1>
         <button className="edit-button">Edit Name</button>
       </div>

@@ -43,11 +43,14 @@ const SignIn = () => {
   useEffect(() => {
     if (authToken) {
       dispatch(getUserProfile(authToken));
-      console.log("======", userProfile);
-      // const userId = userProfile.id ? userProfile.id : null;
-      // const redirect = userId ? navigate(`/user/${userId}`) : null;
     }
-  }, [authToken, navigate]);
+  }, [authToken]);
+
+  useEffect(() => {
+    if (userProfile) {
+      navigate(`/user/${userProfile.id}`);
+    }
+  }, [userProfile, navigate]);
 
   return (
     <main className="main bg-dark">
