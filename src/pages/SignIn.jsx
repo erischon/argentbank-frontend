@@ -1,29 +1,28 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { loginUser } from "../features/user/userSlice";
+import { loginUser } from "../features/auth/authSlice";
 
 import FormRow from "../components/FormRow";
 
 const initialState = {
   email: "",
   password: "",
-  isMember: true,
   rememberMe: false,
 };
 
 const SignIn = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [values, setValues] = useState(initialState);
-  const { isLoading, user } = useSelector((store) => store.user);
+  const { isLoading, authToken } = useSelector((store) => store.auth);
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-
-    console.log("======handleChange", `${name}:${value}`);
 
     setValues({ ...values, [name]: value });
   };
@@ -38,6 +37,13 @@ const SignIn = () => {
 
     dispatch(loginUser({ email: email, password: password }));
   };
+
+  useEffect(() => {
+    console.log("======authToken", authToken);
+    if (authToken) {
+      navigate("/");
+    }
+  }, [authToken, navigate]);
 
   return (
     <main className="main bg-dark">

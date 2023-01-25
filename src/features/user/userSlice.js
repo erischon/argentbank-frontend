@@ -5,13 +5,6 @@ const initialState = {
   user: null,
 };
 
-export const loginUser = createAsyncThunk(
-  "user/loginUser",
-  async (user, thunkAPI) => {
-    console.log(`Login User : ${JSON.stringify(user)}`);
-  }
-);
-
 const userSlice = createSlice({
   name: "user",
   initialState,
