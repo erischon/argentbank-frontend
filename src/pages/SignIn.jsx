@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { loginUser } from "../features/auth/authSlice";
+import { loginUser } from "../features/auth/authActions";
 
 import FormRow from "../components/FormRow";
+import { getUserProfile } from "../features/user/userActions";
 
 const initialState = {
   email: "",
@@ -18,6 +19,7 @@ const SignIn = () => {
 
   const [values, setValues] = useState(initialState);
   const { isLoading, authToken } = useSelector((store) => store.auth);
+  const { userProfile } = useSelector((store) => store.user);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -39,9 +41,11 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    console.log("======authToken", authToken);
     if (authToken) {
-      navigate("/");
+      dispatch(getUserProfile(authToken));
+      console.log("======", userProfile);
+      // const userId = userProfile.id ? userProfile.id : null;
+      // const redirect = userId ? navigate(`/user/${userId}`) : null;
     }
   }, [authToken, navigate]);
 

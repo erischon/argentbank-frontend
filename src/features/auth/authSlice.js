@@ -1,28 +1,16 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-import customAxios from "../../utils/axios";
 import {
   addAuthToLocalStorage,
-  removeAuthFromLocalStorage,
   getAuthFromLocalStorage,
 } from "../../utils/localStorage";
+
+import { loginUser } from "./authActions";
 
 const initialState = {
   isLoading: false,
   authToken: getAuthFromLocalStorage(),
 };
-
-export const loginUser = createAsyncThunk(
-  "auth/loginUser",
-  async (user, thunkAPI) => {
-    try {
-      const resp = await customAxios.post("/user/login", user);
-      return resp.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.msg);
-    }
-  }
-);
 
 const authSlice = createSlice({
   name: "auth",
