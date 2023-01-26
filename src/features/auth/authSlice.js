@@ -5,16 +5,24 @@ import {
   getAuthFromLocalStorage,
 } from "../../utils/localStorage";
 
-import { loginUser } from "./authActions";
+import { loginUser, getUserProfile } from "./authActions";
 
 const initialState = {
   isLoading: false,
   authToken: getAuthFromLocalStorage(),
+  userProfile: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    logout: (state) => {
+      localStorage.removeItem("userToken");
+      state.authToken = null;
+      state.userProfile = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
@@ -33,8 +41,26 @@ const authSlice = createSlice({
             rejectedError.meta.rejectedWithValue
           )}`
         );
+      })
+      .addCase(getUserProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserProfile.fulfilled, (state, { payload }) => {
+        const { body } = payload;
+        state.isLoading = false;
+        state.userProfile = body;
+      })
+      .addCase(getUserProfile.rejected, (state, rejectedError) => {
+        state.isLoading = false;
+        console.log(
+          `Get User Profile, Rejected Error Value : ${JSON.stringify(
+            rejectedError.meta.rejectedWithValue
+          )}`
+        );
       });
   },
 });
+
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

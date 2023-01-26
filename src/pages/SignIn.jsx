@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { loginUser } from "../features/auth/authActions";
+import { loginUser, getUserProfile } from "../features/auth/authActions";
 
 import FormRow from "../components/FormRow";
-import { getUserProfile } from "../features/user/userActions";
 
 const initialState = {
   email: "",
@@ -18,8 +17,9 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const [values, setValues] = useState(initialState);
-  const { isLoading, authToken } = useSelector((store) => store.auth);
-  const { userProfile } = useSelector((store) => store.user);
+  const { isLoading, authToken, userProfile } = useSelector(
+    (store) => store.auth
+  );
 
   const handleChange = (e) => {
     const name = e.target.name;

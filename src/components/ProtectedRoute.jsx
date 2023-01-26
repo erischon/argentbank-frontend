@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  const { userProfile } = useSelector((store) => store.user);
+  const { userProfile } = useSelector((store) => store.auth);
 
   if (!userProfile) {
     return (
