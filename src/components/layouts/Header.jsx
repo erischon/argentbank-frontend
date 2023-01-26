@@ -23,10 +23,11 @@ const Header = () => {
 
       {userProfile ? (
         <div className="user-container">
-          <div>
+          <Link to="/user/profile">
             <i className="fa fa-user-circle"></i>
             {userProfile?.firstName}
-          </div>
+          </Link>
+
           <Link onClick={() => dispatch(logout())}>
             <i className="fa fa-sign-out"></i>
             Sign out
