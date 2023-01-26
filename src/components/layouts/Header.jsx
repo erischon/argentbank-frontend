@@ -8,7 +8,7 @@ import { logout } from "../../features/auth/authSlice";
 const Header = () => {
   const dispatch = useDispatch();
 
-  const { userToken } = useSelector((state) => state.auth);
+  const { userProfile } = useSelector((state) => state.auth);
 
   return (
     <nav className="main-nav">
@@ -21,15 +21,25 @@ const Header = () => {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
 
-      <div>
-        <Link to="signin" className="main-nav-item">
-          <i className="fa fa-user-circle"></i>
-          Sign In
-        </Link>
-        <button className="button" onClick={() => dispatch(logout())}>
-          Logout
-        </button>
-      </div>
+      {userProfile ? (
+        <div className="user-container">
+          <div>
+            <i className="fa fa-user-circle"></i>
+            {userProfile?.firstName}
+          </div>
+          <Link onClick={() => dispatch(logout())}>
+            <i className="fa fa-sign-out"></i>
+            Sign out
+          </Link>
+        </div>
+      ) : (
+        <div className="user-container">
+          <Link to="signin" className="main-nav-item">
+            <i className="fa fa-user-circle"></i>
+            Sign In
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };

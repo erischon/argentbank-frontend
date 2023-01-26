@@ -66,6 +66,11 @@ h1 {
   margin-right: 0.3rem;
 }
 
+.fa-user-circle,
+.fa-sign-out {
+  margin-right: 0.3rem;
+}
+
 .main-nav-item:hover {
   text-decoration: underline;
 }
@@ -78,6 +83,12 @@ h1 {
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
+}
+
+/*  */
+.user-container {
+  display: flex;
+  gap: 1rem;
 }
 
 .hero {
