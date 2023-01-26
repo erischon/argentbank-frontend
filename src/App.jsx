@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import Layout from "./components/layouts/Layout";
 import ErrorPage from "./pages/errorPage";
 import Home from "./pages/Home";
-import SignIn from "./pages/SignIn";
-import User from "./pages/User";
+import Login from "./pages/Login";
+import User from "./pages/Profile";
 
 import { store } from "./app/store";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -21,8 +21,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "signin",
-        element: <SignIn />,
+        path: "login",
+        element: <Login />,
       },
       {
         path: "user",

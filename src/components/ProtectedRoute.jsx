@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
   const { userProfile } = useSelector((store) => store.user);
 
   if (!userProfile) {
     return (
-      <div id="error-page">
+      <div className="unauthorized-page">
         <h1>Unauthorized</h1>
-        <p>Sorry, it's an unauthorized place.</p>
+        <Link to="/login">Login</Link> to gain access
       </div>
     );
   }

@@ -12,7 +12,7 @@ const initialState = {
   rememberMe: false,
 };
 
-const SignIn = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -95,4 +95,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;
