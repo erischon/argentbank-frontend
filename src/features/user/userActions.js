@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import customAxios from "../../utils/axios";
 
 export const loginUser = createAsyncThunk(
-  "auth/loginUser",
+  "user/loginUser",
   async (user, thunkAPI) => {
     try {
       const resp = await customAxios.post("/user/login", user);

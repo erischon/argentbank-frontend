@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { loginUser, getUserProfile } from "../features/auth/authActions";
+import { loginUser, getUserProfile } from "../features/user/userActions";
 
 import FormRow from "../components/FormRow";
 
@@ -18,7 +18,7 @@ const SignIn = () => {
 
   const [values, setValues] = useState(initialState);
   const { isLoading, authToken, userProfile } = useSelector(
-    (store) => store.auth
+    (store) => store.user
   );
 
   const handleChange = (e) => {

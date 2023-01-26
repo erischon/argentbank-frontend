@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import argentBankLogo from "../../assets/img/argentBankLogo.png";
 
-import { logout } from "../../features/auth/authSlice";
+import { logout } from "../../features/user/userSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const { userProfile } = useSelector((state) => state.auth);
+  const { userProfile } = useSelector((state) => state.user);
 
   return (
     <nav className="main-nav">

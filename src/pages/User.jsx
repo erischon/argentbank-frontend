@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const User = () => {
-  const { userProfile } = useSelector((store) => store.auth);
+  const { userProfile } = useSelector((store) => store.user);
 
   return (
     <main className="main bg-dark">

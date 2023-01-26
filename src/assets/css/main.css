@@ -89,6 +89,11 @@ h1 {
 .user-container {
   display: flex;
   gap: 1rem;
+  font-weight: 600;
+}
+
+.user-container a {
+  text-decoration: none;
 }
 
 .hero {

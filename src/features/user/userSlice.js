@@ -5,7 +5,7 @@ import {
   getAuthFromLocalStorage,
 } from "../../utils/localStorage";
 
-import { loginUser, getUserProfile } from "./authActions";
+import { loginUser, getUserProfile } from "./userActions";
 
 const initialState = {
   isLoading: false,
@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: "user",
   initialState,
   reducers: {
     logout: (state) => {
