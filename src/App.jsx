@@ -8,6 +8,7 @@ import SignIn from "./pages/SignIn";
 import User from "./pages/User";
 
 import { store } from "./app/store";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,8 +25,14 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: "user/:userId",
-        element: <User />,
+        path: "user",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "profile",
+            element: <User />,
+          },
+        ],
       },
     ],
   },

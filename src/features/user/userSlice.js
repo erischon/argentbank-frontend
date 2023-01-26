@@ -13,7 +13,7 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getUserProfile.pending, (state) => {
-        console.log("loading");
+        state.isLoading = true;
       })
       .addCase(getUserProfile.fulfilled, (state, { payload }) => {
         const { body } = payload;

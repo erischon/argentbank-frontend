@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 const User = () => {
   const { userProfile } = useSelector((store) => store.user);
 
-  console.log(userProfile?.firstName);
-
   return (
     <main className="main bg-dark">
       <div className="header">
