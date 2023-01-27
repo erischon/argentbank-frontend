@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import EditUser from "../components/EditUser";
 
 const User = () => {
   const { userProfile } = useSelector((store) => store.user);
@@ -13,6 +14,8 @@ const User = () => {
         </h1>
         <button className="edit-button">Edit Name</button>
       </div>
+
+      <EditUser />
 
       <h2 className="sr-only">Accounts</h2>
 
