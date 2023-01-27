@@ -6,9 +6,9 @@ import ErrorPage from "./pages/errorPage";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import User from "./pages/Profile";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 import { store } from "./app/store";
-import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
