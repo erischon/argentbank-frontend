@@ -1,29 +1,63 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import FormRow from "./FormRow";
 import "../assets/css/editUser.css";
 
+import { updateUser } from "../features/user/userActions";
+
 const EditUser = () => {
+  const dispatch = useDispatch();
+
   const { userProfile } = useSelector((store) => store.user);
+
+  const [userData, setUserData] = useState({
+    firstName: userProfile?.firstName || "",
+    lastName: userProfile?.lastName || "",
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setUserData({ ...userData, [name]: value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const { firstName, lastName } = userData;
+    if (!firstName || !lastName) {
+      console.log("Please Fill Out All Fields");
+      return;
+    }
+
+    dispatch(updateUser({ firstName: firstName, lastName: lastName }));
+  };
 
   return (
     <section className="edit-user--container">
       <form className="edit-user--form-container">
         <FormRow
           type="text"
-          value={userProfile.firstName}
-          name="firstname"
+          value={userData.firstName}
+          name="firstName"
+          handleChange={handleChange}
           label={false}
         />
 
         <FormRow
           type="text"
-          value={userProfile.lastName}
-          name="lastname"
+          value={userData.lastName}
+          name="lastName"
+          handleChange={handleChange}
           label={false}
         />
 
-        <button className="edit-button edit-user--btn edit-user--btn__end">
+        <button
+          className="edit-button edit-user--btn edit-user--btn__end"
+          onClick={onSubmit}
+        >
           Save
         </button>
         <button className="edit-button edit-user--btn edit-user--btn__start">

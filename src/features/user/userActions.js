@@ -29,3 +29,21 @@ export const getUserProfile = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async (user, thunkAPI) => {
+    try {
+      const resp = await customAxios.put("/user/profile", user, {
+        headers: {
+          authorization: `Bearer ${thunkAPI.getState().user.authToken}`,
+        },
+      });
+
+      return resp.data;
+    } catch (error) {
+      console.log(error.response);
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);

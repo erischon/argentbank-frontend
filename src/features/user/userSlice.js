@@ -5,7 +5,7 @@ import {
   getAuthFromLocalStorage,
 } from "../../utils/localStorage";
 
-import { loginUser, getUserProfile } from "./userActions";
+import { loginUser, getUserProfile, updateUser } from "./userActions";
 
 const initialState = {
   isLoading: false,
@@ -57,6 +57,18 @@ const authSlice = createSlice({
             rejectedError.meta.rejectedWithValue
           )}`
         );
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        const { userProfile } = payload;
+        state.isLoading = false;
+        state.userProfile = userProfile;
+      })
+      .addCase(updateUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        console.log(payload);
       });
   },
 });
