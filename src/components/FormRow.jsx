@@ -6,10 +6,13 @@ const FormRow = ({
   labelText,
   required,
   autoComplete,
+  label = true,
+  className = "input-wrapper",
 }) => {
   return (
-    <div className="input-wrapper">
-      <label htmlFor={name}>{labelText || name}</label>
+    <div className={className}>
+      {label && <label htmlFor={name}>{labelText || name}</label>}
+
       <input
         type={type}
         name={name}

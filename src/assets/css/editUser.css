@@ -1,0 +1,26 @@
+.edit-user--container {
+  display: flex;
+  justify-content: center;
+
+  max-width: 80%;
+  margin: 2.5rem auto;
+}
+
+.edit-user--form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.edit-user--btn {
+  width: 7rem;
+}
+
+.edit-user--btn__start {
+  justify-self: start;
+}
+
+.edit-user--btn__end {
+  justify-self: end;
+}
