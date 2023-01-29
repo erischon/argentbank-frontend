@@ -1,21 +1,36 @@
 import { useSelector } from "react-redux";
+import { useState } from "react";
+
 import EditUser from "../components/EditUser";
 
 const User = () => {
   const { userProfile } = useSelector((store) => store.user);
+  const [isEditUser, setIsEditUser] = useState(false);
 
   return (
     <main className="main bg-dark">
-      <div className="header">
-        <h1>
-          Welcome back
-          <br />
-          {`${userProfile?.firstName} ${userProfile?.lastName}`}
-        </h1>
-        <button className="edit-button">Edit Name</button>
-      </div>
+      {!isEditUser ? (
+        <div className="header">
+          <h1>
+            Welcome back
+            <br />
+            {`${userProfile?.firstName} ${userProfile?.lastName}`}
+          </h1>
 
-      <EditUser />
+          <button
+            className="edit-button"
+            onClick={() => setIsEditUser(!isEditUser)}
+          >
+            Edit Name
+          </button>
+        </div>
+      ) : (
+        <div className="header">
+          <h1>Welcome back</h1>
+
+          <EditUser />
+        </div>
+      )}
 
       <h2 className="sr-only">Accounts</h2>
 

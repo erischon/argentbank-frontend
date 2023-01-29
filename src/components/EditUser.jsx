@@ -10,6 +10,7 @@ const EditUser = () => {
   const dispatch = useDispatch();
 
   const { userProfile } = useSelector((store) => store.user);
+  const [isEditUser, setIsEditUser] = useState(true);
 
   const [userData, setUserData] = useState({
     firstName: userProfile?.firstName || "",
@@ -35,6 +36,10 @@ const EditUser = () => {
     dispatch(updateUser({ firstName: firstName, lastName: lastName }));
   };
 
+  const handleCancel = (e) => {
+    return;
+  };
+
   return (
     <section className="edit-user--container">
       <form className="edit-user--form-container">
@@ -55,12 +60,17 @@ const EditUser = () => {
         />
 
         <button
+          type="submit"
           className="edit-button edit-user--btn edit-user--btn__end"
           onClick={onSubmit}
         >
           Save
         </button>
-        <button className="edit-button edit-user--btn edit-user--btn__start">
+        <button
+          type="button"
+          className="edit-button edit-user--btn edit-user--btn__start"
+          onClick={handleCancel}
+        >
           Cancel
         </button>
       </form>
