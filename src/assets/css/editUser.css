@@ -6,11 +6,17 @@
   margin: 2.5rem auto;
 }
 
-.edit-user--form-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 1rem;
+.edit-user--form-container button {
+  margin-right: 0.5rem;
+}
+
+@media (min-width: 720px) {
+  .edit-user--form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .edit-user--btn {
@@ -23,4 +29,13 @@
 
 .edit-user--btn__end {
   justify-self: end;
+}
+
+.header--container {
+}
+
+.header__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }

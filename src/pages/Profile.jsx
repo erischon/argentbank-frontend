@@ -6,30 +6,23 @@ import EditUser from "../components/EditUser";
 const User = () => {
   const { userProfile } = useSelector((store) => store.user);
   const [isEditUser, setIsEditUser] = useState(false);
+  const [show, setShow] = useState(false);
 
   return (
     <main className="main bg-dark">
-      {!isEditUser ? (
-        <div className="header">
-          <h1>
-            Welcome back
-            <br />
-            {`${userProfile?.firstName} ${userProfile?.lastName}`}
+      {!show ? (
+        <section className="header header--container">
+          <h1 className="header__title">
+            <span>Welcome back</span>
+            <span>{`${userProfile?.firstName} ${userProfile?.lastName}`}</span>
           </h1>
 
-          <button
-            className="edit-button"
-            onClick={() => setIsEditUser(!isEditUser)}
-          >
+          <button className="edit-button" onClick={() => setShow(!show)}>
             Edit Name
           </button>
-        </div>
+        </section>
       ) : (
-        <div className="header">
-          <h1>Welcome back</h1>
-
-          <EditUser />
-        </div>
+        <EditUser show={show} onClose={() => setShow(false)} />
       )}
 
       <h2 className="sr-only">Accounts</h2>

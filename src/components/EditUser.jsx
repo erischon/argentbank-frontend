@@ -6,7 +6,7 @@ import "../assets/css/editUser.css";
 
 import { updateUser } from "../features/user/userActions";
 
-const EditUser = () => {
+const EditUser = ({ show, onClose }) => {
   const dispatch = useDispatch();
 
   const { userProfile } = useSelector((store) => store.user);
@@ -40,40 +40,48 @@ const EditUser = () => {
     return;
   };
 
+  if (!show) {
+    return null;
+  }
+
   return (
-    <section className="edit-user--container">
-      <form className="edit-user--form-container">
-        <FormRow
-          type="text"
-          value={userData.firstName}
-          name="firstName"
-          handleChange={handleChange}
-          label={false}
-        />
+    <section className="header header--container">
+      <h1>Welcome back</h1>
 
-        <FormRow
-          type="text"
-          value={userData.lastName}
-          name="lastName"
-          handleChange={handleChange}
-          label={false}
-        />
+      <div className="edit-user--container">
+        <form className="edit-user--form-container">
+          <FormRow
+            type="text"
+            value={userData.firstName}
+            name="firstName"
+            handleChange={handleChange}
+            label={false}
+          />
 
-        <button
-          type="submit"
-          className="edit-button edit-user--btn edit-user--btn__end"
-          onClick={onSubmit}
-        >
-          Save
-        </button>
-        <button
-          type="button"
-          className="edit-button edit-user--btn edit-user--btn__start"
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-      </form>
+          <FormRow
+            type="text"
+            value={userData.lastName}
+            name="lastName"
+            handleChange={handleChange}
+            label={false}
+          />
+
+          <button
+            type="submit"
+            className="edit-button edit-user--btn edit-user--btn__end"
+            onClick={onSubmit}
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            className="edit-button edit-user--btn edit-user--btn__start"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
     </section>
   );
 };
