@@ -5,7 +5,6 @@ import EditUser from "../components/EditUser";
 
 const User = () => {
   const { userProfile } = useSelector((store) => store.user);
-  const [isEditUser, setIsEditUser] = useState(false);
   const [show, setShow] = useState(false);
 
   return (
@@ -22,7 +21,7 @@ const User = () => {
           </button>
         </section>
       ) : (
-        <EditUser show={show} onClose={() => setShow(false)} />
+        <EditUser show={show} onCancel={() => setShow(false)} />
       )}
 
       <h2 className="sr-only">Accounts</h2>

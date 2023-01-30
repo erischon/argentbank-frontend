@@ -9,7 +9,7 @@ export const loginUser = createAsyncThunk(
       const resp = await customAxios.post("/user/login", user);
       return resp.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.msg);
+      return thunkAPI.rejectWithValue(error?.response?.data);
     }
   }
 );
@@ -23,8 +23,6 @@ export const getUserProfile = createAsyncThunk(
       });
       return resp?.data;
     } catch (error) {
-      console.log("======error", error);
-
       return thunkAPI.rejectWithValue(error.response.data.msg);
     }
   }

@@ -11,6 +11,7 @@ const initialState = {
   isLoading: false,
   authToken: getAuthFromLocalStorage(),
   userProfile: null,
+  errorLogin: null,
 };
 
 const authSlice = createSlice({
@@ -30,17 +31,14 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         const { token } = payload.body;
+
         state.isLoading = false;
         state.authToken = token;
         addAuthToLocalStorage(token);
       })
       .addCase(loginUser.rejected, (state, rejectedError) => {
         state.isLoading = false;
-        console.log(
-          `Rejected Error Value : ${JSON.stringify(
-            rejectedError.meta.rejectedWithValue
-          )}`
-        );
+        state.errorLogin = rejectedError;
       })
       .addCase(getUserProfile.pending, (state) => {
         state.isLoading = true;

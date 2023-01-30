@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import FormRow from "./FormRow";
-import "../assets/css/editUser.css";
 
 import { updateUser } from "../features/user/userActions";
 
-const EditUser = ({ show, onClose }) => {
+const EditUser = ({ show, onCancel }) => {
   const dispatch = useDispatch();
 
+  const [errMsg, setErrMsg] = useState("");
+
   const { userProfile } = useSelector((store) => store.user);
-  const [isEditUser, setIsEditUser] = useState(true);
 
   const [userData, setUserData] = useState({
     firstName: userProfile?.firstName || "",
@@ -29,15 +29,11 @@ const EditUser = ({ show, onClose }) => {
 
     const { firstName, lastName } = userData;
     if (!firstName || !lastName) {
-      console.log("Please Fill Out All Fields");
+      setErrMsg("Please Fill Out All Fields");
       return;
     }
 
     dispatch(updateUser({ firstName: firstName, lastName: lastName }));
-  };
-
-  const handleCancel = (e) => {
-    return;
   };
 
   if (!show) {
@@ -47,6 +43,8 @@ const EditUser = ({ show, onClose }) => {
   return (
     <section className="header header--container">
       <h1>Welcome back</h1>
+
+      <p className="error-msg">{errMsg}</p>
 
       <div className="edit-user--container">
         <form className="edit-user--form-container">
@@ -76,7 +74,7 @@ const EditUser = ({ show, onClose }) => {
           <button
             type="button"
             className="edit-button edit-user--btn edit-user--btn__start"
-            onClick={onClose}
+            onClick={onCancel}
           >
             Cancel
           </button>

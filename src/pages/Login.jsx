@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -16,8 +16,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const errRef = useRef();
+
+  const [errMsg, setErrMsg] = useState("");
   const [values, setValues] = useState(initialState);
-  const { isLoading, authToken, userProfile } = useSelector(
+  const { isLoading, authToken, userProfile, errorLogin } = useSelector(
     (store) => store.user
   );
 
@@ -32,8 +35,12 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = values;
+
     if (!email || !password) {
-      console.log("Please Fill Out All Fields");
+      setErrMsg("Please Fill Out All Fields");
+
+      errRef.current?.focus();
+
       return;
     }
 
@@ -52,9 +59,19 @@ const Login = () => {
     }
   }, [userProfile, navigate]);
 
+  useEffect(() => {
+    if (errorLogin) {
+      setErrMsg(errorLogin?.payload?.message);
+    }
+  }, [errorLogin]);
+
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
+        <p ref={errRef} className="error-msg" aria-live="assertive">
+          {errMsg}
+        </p>
+
         <i className="fa fa-user-circle sign-in-icon"></i>
 
         <h1>Sign In</h1>
