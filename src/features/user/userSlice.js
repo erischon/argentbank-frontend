@@ -22,6 +22,7 @@ const authSlice = createSlice({
       localStorage.removeItem("userToken");
       state.authToken = null;
       state.userProfile = null;
+      state.errorLogin = null;
     },
   },
   extraReducers: (builder) => {
@@ -34,6 +35,7 @@ const authSlice = createSlice({
 
         state.isLoading = false;
         state.authToken = token;
+        state.errorLogin = null;
         addAuthToLocalStorage(token);
       })
       .addCase(loginUser.rejected, (state, rejectedError) => {
