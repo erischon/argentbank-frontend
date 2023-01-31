@@ -11,7 +11,7 @@ const ProtectedRoute = () => {
       <div className="unauthorized-page">
         <h1>Unauthorized</h1>
         <Link to="/login">Login</Link> to gain access
-        <Navigate to="/login" />
+        <Navigate to="/" />
       </div>
     );
   }

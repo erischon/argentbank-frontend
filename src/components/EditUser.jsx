@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import FormRow from "./FormRow";
 
@@ -23,6 +24,7 @@ const EditUser = ({ show, onCancel }) => {
 
     setUserData({ ...userData, [name]: value });
   };
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +36,7 @@ const EditUser = ({ show, onCancel }) => {
     }
 
     dispatch(updateUser({ firstName: firstName, lastName: lastName }));
+    navigate("/login");
   };
 
   if (!show) {
