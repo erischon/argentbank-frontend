@@ -9,7 +9,7 @@ import FormRow from "../components/FormRow";
 const initialState = {
   email: "",
   password: "",
-  rememberMe: false,
+  rememberMe: true,
 };
 
 const Login = () => {
@@ -101,6 +101,7 @@ const Login = () => {
               value={values.rememberMe}
               name="rememberMe"
               onChange={handleChange}
+              defaultChecked={values.rememberMe}
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>

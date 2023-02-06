@@ -9,5 +9,6 @@ export const removeAuthFromLocalStorage = () => {
 export const getAuthFromLocalStorage = () => {
   const result = localStorage.getItem("userToken");
   const userToken = result ? JSON.parse(result) : null;
+
   return userToken;
 };
