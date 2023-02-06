@@ -105,7 +105,9 @@ const Login = () => {
             <label htmlFor="remember-me">Remember me</label>
           </div>
 
-          <button className="sign-in-button">Sign In</button>
+          <button className="sign-in-button" disabled={isLoading}>
+            Sign In
+          </button>
         </form>
       </section>
     </main>
