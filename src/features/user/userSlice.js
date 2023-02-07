@@ -47,6 +47,7 @@ const userSlice = createSlice({
       })
       .addCase(getUserProfile.fulfilled, (state, { payload }) => {
         const { body } = payload;
+
         state.isLoading = false;
         state.userProfile = body;
       })
@@ -63,6 +64,7 @@ const userSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         const { body } = payload;
+
         state.isLoading = false;
         state.userProfile = body;
       })
