@@ -102,6 +102,7 @@ const Login = () => {
               name="rememberMe"
               onChange={handleChange}
               defaultChecked={values.rememberMe}
+              disabled={true}
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>
