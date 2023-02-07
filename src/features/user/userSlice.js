@@ -12,6 +12,7 @@ const initialState = {
   authToken: getAuthFromLocalStorage(),
   userProfile: null,
   errorLogin: null,
+  rememberUser: true,
 };
 
 const userSlice = createSlice({
@@ -23,6 +24,10 @@ const userSlice = createSlice({
       state.authToken = null;
       state.userProfile = null;
       state.errorLogin = null;
+      state.rememberUser = null;
+    },
+    isRemember: (state) => {
+      state.rememberUser = state.rememberUser;
     },
   },
   extraReducers: (builder) => {
@@ -36,7 +41,7 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.authToken = token;
         state.errorLogin = null;
-        addAuthToLocalStorage(token);
+        state.rememberUser ? addAuthToLocalStorage(token) : null;
       })
       .addCase(loginUser.rejected, (state, rejectedError) => {
         state.isLoading = false;
@@ -75,6 +80,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, isRemember } = userSlice.actions;
 
 export default userSlice.reducer;

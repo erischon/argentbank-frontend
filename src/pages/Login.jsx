@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { loginUser, getUserProfile } from "../features/user/userActions";
+import { isRemember } from "../features/user/userSlice";
 
 import FormRow from "../components/FormRow";
 
 const initialState = {
   email: "",
   password: "",
-  rememberMe: true,
+  // rememberMe: true,
 };
 
 const Login = () => {
@@ -20,15 +21,15 @@ const Login = () => {
 
   const [errMsg, setErrMsg] = useState("");
   const [values, setValues] = useState(initialState);
-  const { isLoading, authToken, userProfile, errorLogin } = useSelector(
-    (store) => store.user
-  );
+  // const [rememberMe, setRememberMe] = useState(false);
+  const { isLoading, authToken, userProfile, errorLogin, rememberUser } =
+    useSelector((store) => store.user);
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-
+    console.log("======", name, value);
     setValues({ ...values, [name]: value });
   };
 
@@ -49,6 +50,7 @@ const Login = () => {
 
   useEffect(() => {
     if (authToken) {
+      dispatch(isRemember(rememberUser));
       dispatch(getUserProfile(authToken));
     }
   }, [authToken]);
@@ -98,10 +100,10 @@ const Login = () => {
             <input
               type="checkbox"
               id="remember-me"
-              value={values.rememberMe}
-              name="rememberMe"
+              value={values.rememberUser}
+              name="rememberUser"
               onChange={handleChange}
-              defaultChecked={values.rememberMe}
+              defaultChecked={values.rememberUser}
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>
