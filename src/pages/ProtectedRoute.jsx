@@ -8,11 +8,9 @@ const ProtectedRoute = () => {
 
   if (!userProfile) {
     return (
-      <div className="unauthorized-page">
-        <h1>Unauthorized</h1>
-        <Link to="/login">Login</Link> to gain access
+      <>
         <Navigate to="/" />
-      </div>
+      </>
     );
   }
 
